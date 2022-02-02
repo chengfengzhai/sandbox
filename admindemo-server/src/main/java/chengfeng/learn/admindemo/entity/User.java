@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -31,8 +32,11 @@ public class User {
 	
 	@Column(name="USERNAME")
 	private String username;
+	
+	@JsonIgnore
 	@Column(name="PASSWORD")
 	private String password;
+	
 	@Column(name="EMAIL")
 	private String email;
 	
@@ -69,6 +73,7 @@ public class User {
 		this.username = username;
 	}
 
+	
 	public String getPassword() {
 		return password;
 	}
