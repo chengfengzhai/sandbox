@@ -2,12 +2,16 @@ package chengfeng.learn.admindemo.repo;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.jdbc.Sql;
 
 import chengfeng.learn.admindemo.CommonTestConfig;
+import chengfeng.learn.admindemo.entity.Product;
 
 @SpringBootTest
 /**Can import in applications from main/src Can't do here from unit class test/main, 
@@ -16,22 +20,17 @@ import chengfeng.learn.admindemo.CommonTestConfig;
  */
 //@Import(AppConfig.class) 
 @ContextConfiguration(classes=CommonTestConfig.class)
-class UserRepositoryTest {
+@Sql({"classpath:class-level-init-load.sql"})
+class ProductRepositoryTest {
 
 	@Autowired
-	private UserRepository userRepository;
+	ProductRepository productRepository;
 	
 	@Test
-	void testACustomizedMethodInUserRepository() {
-		userRepository.aCustomizedMethodInUserRepository();
-		
-	}
-	
-	@Test
-	void testDbAutoLoadedViaDataDotSqlFile() {
-		long count = userRepository.count();
-		System.out.println("Found users count: " + count);
-		assertEquals(2,count);		
+	void testFindAllAndClassLevelInitLoad() {
+		List<Product> products = productRepository.findAll();
+		System.out.println("total products : " + products.size());
+		assertEquals(5, products.size());
 	}
 
 }

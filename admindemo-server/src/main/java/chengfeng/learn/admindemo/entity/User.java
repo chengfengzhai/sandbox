@@ -7,12 +7,26 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="USER")
+//if jackson tries to transform an entity POJO bean to JSON object and that POJO
+//Object is lazy-loaded by JPA implementation.
+//e.g. if in controller class, return userRepository.getById(id) as response 
+//Hibernate put an property called "hibernateLazyInitializer" with null value into
+//the object. Jackson would try to put this newly added property into json object.
+//this could be fixed by some ways. e.g. 1. call findById(id) instead of getById(id)
+//in repository, 2. add @JsonIgnreProperties like following. 3.introduce DTO instead
+//of entity bean as the object would be returned as http response by web controllers. 
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class User {
 	@Id
 	@Column(name="ID")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	// GenerationType.AUTO seems not auto-created value when directly using SQL insert.
+	//Instead, GenerationType.IDENTITY will auto-created value even when directly using SQL insert
+	@GeneratedValue(strategy = GenerationType.AUTO) 
 	private long id;
 	
 	@Column(name="USERNAME")
