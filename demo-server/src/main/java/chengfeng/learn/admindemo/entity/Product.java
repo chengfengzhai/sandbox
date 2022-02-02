@@ -1,7 +1,5 @@
 package chengfeng.learn.admindemo.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Product implements Serializable{
+public class Product{
 	@Id
 	@Column(name="ID")
 	// GenerationType.AUTO seems not auto-created value when directly using SQL insert.
