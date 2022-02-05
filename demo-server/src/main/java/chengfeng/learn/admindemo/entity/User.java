@@ -1,10 +1,17 @@
 package chengfeng.learn.admindemo.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -30,11 +37,15 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO) 
 	private long id;
 	
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
+
 	@Column(name="USERNAME")
 	private String username;
 	
 	@JsonIgnore
-	@Column(name="PASSWORD")
+	@Column(name="PASSWORD", length=100)
 	private String password;
 	
 	@Column(name="EMAIL")
@@ -93,5 +104,19 @@ public class User {
 	public String toString() {
 		return id + "\n" + username + "\n" + password + "\n" + email;
 	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 	
+	public void addRole(Role role) {
+		if(roles == null) {
+			roles = new HashSet<Role>();
+		}
+		roles.add(role);
+	}
 }
