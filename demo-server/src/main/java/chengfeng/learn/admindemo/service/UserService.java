@@ -37,6 +37,6 @@ public class UserService {
 		User user = DtoTransformer.buildEntityUser(jsonUser);
 		user.setPassword(encoder.encode(user.getPassword()));
 		user.addRole(roleService.getDefaultRole());
-		userRepository.insert(user);
+		userRepository.insertAndFlush(user);
 	}	
 }

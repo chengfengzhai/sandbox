@@ -34,7 +34,7 @@ public class User {
 	@Column(name="ID")
 	// GenerationType.AUTO seems not auto-created value when directly using SQL insert.
 	//Instead, GenerationType.IDENTITY will auto-created value even when directly using SQL insert
-	@GeneratedValue(strategy = GenerationType.AUTO) 
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private long id;
 	
 	@ManyToMany(fetch=FetchType.EAGER)
