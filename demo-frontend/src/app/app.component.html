@@ -2,6 +2,10 @@
     <span>{{ title }}  </span>
     <ul class="text-center list-inline py-3">
         <li class="list-inline-item"><a routerLink="/products" class="btn btn-info"> List Products</a></li>
+        <li class="list-inline-item"><a routerLink="/login" class="btn btn-info"> login </a></li>
+        <li>
+            <a href class="nav-link" (click)="logout()">LogOut</a>
+        </li>
     </ul>
 </div>
 <router-outlet></router-outlet>
