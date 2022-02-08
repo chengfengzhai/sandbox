@@ -25,7 +25,7 @@ import { APP_BASE_HREF } from '@angular/common';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [{provide: APP_BASE_HREF, useValue: '/sandbox'},authInerceptorProviders],
+  providers: [authInerceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
