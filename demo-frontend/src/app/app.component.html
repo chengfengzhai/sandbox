@@ -2,6 +2,7 @@
     <span>{{ title }}  </span>
     <ul class="text-center list-inline py-3" *ngIf="!isLoggedIn">
         <li class="list-inline-item"><a routerLink="/login" class="btn btn-info"> login </a></li>
+        <li class="list-inline-item"><a routerLink="/register" class="btn btn-info"> Register </a></li>
     </ul>
     <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
         <li class="list-inline-item"><a routerLink="/products" class="btn btn-info"> List Products</a></li>

@@ -6,8 +6,7 @@ import { Product } from '../model/product';
   providedIn: 'root'
 })
 export class ProductService {
-  private productUrl = 'http://150.230.30.7/api/product/all';
-  //private productUrl = 'http://150.230.30.7/api/ac/02';
+  private productUrl = 'https://steventest.condoresource.ca/api/product/all';
   //private productUrl = 'http://localhost:8080/api/product/all';
 
   constructor(private http : HttpClient) {  }
