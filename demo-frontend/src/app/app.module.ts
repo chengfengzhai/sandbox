@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { TokenStorageService } from './service/token-storage.service';
 import { authInerceptorProviders } from './httpconfig/auth.interceptor';
+import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { authInerceptorProviders } from './httpconfig/auth.interceptor';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [authInerceptorProviders],
+  providers: [{provide: APP_BASE_HREF, useValue: '/sandbox'},authInerceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
