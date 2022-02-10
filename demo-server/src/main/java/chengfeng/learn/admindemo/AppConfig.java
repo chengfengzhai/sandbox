@@ -6,10 +6,12 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import chengfeng.learn.admindemo.repo.ext.BaseJpaRepositoryImpl;
 
 @SpringBootConfiguration
+@EnableWebMvc
 @EntityScan("chengfeng.learn.admindemo.entity")
 @ComponentScan({"chengfeng.learn.admindemo.repo","chengfeng.learn.admindemo.service"})
 //@ComponentScan(excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = CommandLineRunner.class))

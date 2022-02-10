@@ -56,7 +56,7 @@ public class JwtWebSecurityConfig extends WebSecurityConfigurerAdapter {
       .exceptionHandling().authenticationEntryPoint(authExceptionHandler).and()
       .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
       .authorizeRequests().antMatchers("/api/signin","/api/signup").permitAll()
-      .antMatchers("/api/test/*","/h2-console","/h2-console/*").permitAll()
+      .antMatchers("/sandbox","/sandbox/*","/api/test/*","/h2-console","/h2-console/*").permitAll()
       .anyRequest().authenticated();
 
     http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

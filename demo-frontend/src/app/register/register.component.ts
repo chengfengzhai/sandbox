@@ -23,7 +23,8 @@ export class RegisterComponent implements OnInit {
         this.isFinished = true;
       },
       err => {
-        this.errorMessage = err.errorMessage;
+        console.log(err);
+        this.errorMessage = err.error.message;
         this.isThereError = true;
       }
     );
